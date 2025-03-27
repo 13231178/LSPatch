@@ -10,11 +10,18 @@ plugins {
     id("java-library")
 }
 
+//java {
+//    sourceCompatibility = androidSourceCompatibility
+//    targetCompatibility = androidTargetCompatibility
+//}
 java {
-    sourceCompatibility = androidSourceCompatibility
-    targetCompatibility = androidTargetCompatibility
+    // 设置 JVM toolchain 为特定的 Java 版本，例如 Java 21
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
 }
-
 val generateTask = task<Copy>("generateJava") {
     val template = mapOf(
         "apiCode" to apiCode,
